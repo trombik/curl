@@ -159,6 +159,10 @@ typedef ssize_t (Curl_recv)(struct connectdata *conn, /* connection data */
   ((x) && ((x)->magic == CURLEASY_MAGIC_NUMBER))
 
 /* the type we use for storing a single boolean bit */
+/* BIT is defined in esp-idf */
+#if defined(BIT) && defined(ESP_PLATFORM)
+#undef BIT
+#endif
 #ifdef _MSC_VER
 typedef bool bit;
 #define BIT(x) bool x

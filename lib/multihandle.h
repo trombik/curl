@@ -67,7 +67,9 @@ typedef enum {
 
 #define CURLPIPE_ANY (CURLPIPE_MULTIPLEX)
 
-#if defined(USE_SOCKETPAIR) && !defined(USE_BLOCKING_SOCKETS)
+/* disable ENABLE_WAKEUP because in lib/multi.c, AF_UNIX, which is not defined
+ * in esp-idf,  is used without ifdef */
+#if defined(USE_SOCKETPAIR) && !defined(USE_BLOCKING_SOCKETS) && !defined(ESP_PLATFORM)
 #define ENABLE_WAKEUP
 #endif
 
